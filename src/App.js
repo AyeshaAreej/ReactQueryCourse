@@ -14,13 +14,14 @@ function App() {
      <nav>
          <ul> 
             <li> <Link to='/'>Home</Link></li>
-            <li> <Link to='/superheroes'>React Query Heroes</Link></li>
+            <li> <Link to='/super-heroes'>React Query Heroes</Link></li>
          </ul>
        </nav>
 
      <Routes>
-       <Route path='/superheroes' element={<SuperHeroesPage/>} />
-       <Route path='/' element={ <HomePage/> }/>
+     <Route path="/" element={<HomePage />}/>
+     <Route path="super-heroes" element={<SuperHeroesPage />} />
+      
        </Routes>
 
    </Router>  
