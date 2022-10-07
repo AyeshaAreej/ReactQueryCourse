@@ -1,30 +1,13 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import axios from 'axios'
+import { useSuperHeroes } from '../hooks/useSuperHeroes'
 
-
-
-  // onSuccess and on Error function to preform side effects functions like navigation to another rout on success
-  const onSuccess=(data)=>{
-  
-    console.log("perform side-effect after data fetching",data)
-  }
-  const onError=(error)=>{
-    console.log("perform side-effect after encountering error",error)
-  
-  }
-
-const fetchSuperHeroes = () =>{
-  return axios.get('http://localhost:4000/superheroes')
-}
 
 
 export const SuperHeroesPage=()=> {
-
   
- 
-  
-  // onSuccess and on Error function to preform side effects functions like navigation to another rout on success
+// onSuccess and on Error function to preform side effects functions like navigation to another rout on success
 const onSuccess=(data)=>{
   
   console.log("perform side-effect after data fetching",data)
@@ -34,30 +17,7 @@ const onError=(error)=>{
 
 }
   
-  const {isLoading,data, isError, error,isFetching, refetch } = useQuery('super-heroes',
-  fetchSuperHeroes,
-  {
-    cacheTime:5000,
-    // to be save from too much queries when data is not rapidly changing so i
-    // staleTime:3000
-    // refetchOnMount:'always', //true or false or always
-    // For making ui uptodate when users came to app tab
-    // refetchOnWindowFocus:true //update data without refreshing
-   
-    // For polling values: true false or any number for time interval
-      refetchInterval:false,
-    //  Continues to fetch data even when browser is not in focus
-      // refetchIntervalInBackground:true,
-
-      //Fetching data on onClick Step1 For restricting useQuery to fire on component mount
-      //  enabled:false,
-     
-      onSuccess:onSuccess,
-      // es6 shotrhand when key and value have same name
-      onError,
-
-  })
- 
+  const {isLoading,data, isError, error,isFetching, refetch } = useSuperHeroes(onSuccess, onError)
    
    console.log( isLoading,isFetching)
   if (isError){
@@ -72,17 +32,14 @@ const onError=(error)=>{
   return (
     <>
        <h2>Super Heroes Page</h2>
-       {/* Step 2 of firing useQuery on button click */}
-       {/* <button onClick={refetch}>Fetch Heroes</button> */}
        { data?.data.map(hero=>{
-      return(
+       return(
         <div key={hero.id}>
         {hero.name}
         </div>
-      )
-    })
+      )})}
 
-   }
+      
      </>
    )
 }
