@@ -21,6 +21,7 @@ function App() {
      <Routes>
      <Route path="/" element={<HomePage />}/>
      <Route path="super-heroes" element={<SuperHeroesPage />} />
+     <Route path="assignment" element={<SuperHeroesPage />} />
       
        </Routes>
 
