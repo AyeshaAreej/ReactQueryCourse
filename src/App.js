@@ -6,6 +6,8 @@ import { QueryClientProvider,QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import RQSuperHero from './components/RQSuperHero.page';
 import { ParallerQueriesPage } from './components/ParallerQueries.page';
+import { DynamicParallelPage } from './components/DynamicParallelQuery.page';
+import { DependentQueriesPage } from './components/DependentQueries.page';
 
 const queryClient=new QueryClient() 
 
@@ -18,6 +20,7 @@ function App() {
             <li> <Link to='/'>Home</Link></li>
             <li> <Link to='/super-heroes'>React Query Heroes</Link></li>
             <li> <Link to='/rq-parallel'>Paraller Query</Link></li>
+            <li> <Link to='/rq-dynamic-parallel'>Dynamic Paraller Query</Link></li>
          </ul>
        </nav>
 
@@ -27,6 +30,9 @@ function App() {
      <Route path="assignment" element={<SuperHeroesPage />} />
      <Route path="super-heroes/:heroId" element={<RQSuperHero />} />
      <Route path="/rq-parallel" element={ <ParallerQueriesPage/> } />
+     <Route path="/rq-dynamic-parallel" element={ <DynamicParallelPage heroIds={[1,3,5]}/> } />
+     <Route path="/rq-dependent" element={ <DependentQueriesPage  email="ayesha@gmail.com"/> } />
+   
      </Routes>
 
    </Router>  
