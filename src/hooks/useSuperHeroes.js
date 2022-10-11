@@ -14,9 +14,7 @@ export const useSuperHeroes = (onSuccess,onError) => {
          {
           onSuccess,
           onError,
-    
-        }
-         )
+    })
 }
 
 

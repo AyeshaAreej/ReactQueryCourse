@@ -1,6 +1,5 @@
+import { Link } from 'react-router-dom'
 import React, { useState } from 'react'
-import { useQuery } from 'react-query'
-import axios from 'axios'
 import { useSuperHeroes } from '../hooks/useSuperHeroes'
 
 
@@ -14,7 +13,6 @@ const onSuccess=(data)=>{
 }
 const onError=(error)=>{
   console.log("perform side-effect after encountering error",error)
-
 }
   
   const {isLoading,data, isError, error,isFetching, refetch } = useSuperHeroes(onSuccess, onError)
@@ -35,9 +33,9 @@ const onError=(error)=>{
        { data?.data.map(hero=>{
        return(
         <div key={hero.id}>
-        {hero.name}
+        <Link to={`/super-heroes/${hero.id}`}> {hero.name}</Link>
         </div>
-      )})}
+       )})}
 
       
      </>
